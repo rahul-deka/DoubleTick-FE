@@ -32,7 +32,6 @@ class CustomerDatabase {
           objectStore.createIndex('lastMessageAt', 'lastMessageAt', { unique: false });
           objectStore.createIndex('addedBy', 'addedBy', { unique: false });
         } else if (oldVersion < 2) {
-          // Upgrade from version 1 to 2: add age index and clear old data
           const transaction = event.target.transaction;
           const objectStore = transaction.objectStore(STORE_NAME);
           
@@ -40,7 +39,6 @@ class CustomerDatabase {
             objectStore.createIndex('age', 'age', { unique: false });
           }
           
-          // Clear old data without age field
           objectStore.clear();
         }
       };
