@@ -58,7 +58,13 @@ function App() {
           await new Promise(resolve => setTimeout(resolve, 0));
         }
         
-        console.log('Database initialization complete!');
+        // Verify exactly 1 million records were created
+        const finalCount = await customerDatabase.getCount();
+        console.log(`Database initialization complete! Total records: ${finalCount.toLocaleString()}`);
+        
+        if (finalCount !== totalRecords) {
+          throw new Error(`Expected ${totalRecords.toLocaleString()} records but got ${finalCount.toLocaleString()}`);
+        }
       } else {
         console.log(`Database already contains ${count.toLocaleString()} records`);
       }

@@ -180,7 +180,7 @@
   transform: translateY(0);
 }
 
-/* Responsive styles for loading page */
+/* Responsive style */
 @media (max-width: 768px) {
   .loading-content {
     padding: 40px 30px;
